@@ -33,7 +33,7 @@
 
                     <!-- --------------------------------------------------------------------------------------------------------- -->
 
-                    <div id="otrosCampos" style="display: none">
+                    <div id="otrosCampos" class="row g-3">
 
 
                         <div class="col-sm-6">
@@ -46,7 +46,7 @@
 
                         <div class="col-sm-6">
                             <label for="" class="form-label">Apellido</label>
-                            <input ID="dato" name="Apellido" runat="server" type="text" class="form-control" >
+                            <input ID="apellido" name="Apellido" runat="server" type="text" class="form-control" >
                         </div>
 
                         <!-- --------------------------------------------------------------------------------------------------------- -->
@@ -74,7 +74,7 @@
                     <div class="col-12">
                         <label for="" class="form-label">Mozo que lo atendió</label>
                         <div class="input-group has-validation">
-                            <input ID="dato" runat="server" type="text" name="QuienGuardoMozo" class="form-control" required>
+                            <input id="quien" runat="server" type="text" name="QuienGuardoMozo" class="form-control" required>
                         </div>
                     </div>
 
@@ -83,8 +83,16 @@
 
                     <div class="col-12">
                         <br />
-                        <button id="btnAceptar" value="0" class="w-100 btn btn-lg" style="background-color: #0c8444; color: white;" type="submit">Aceptar</button>
+                        <button id="btnComprobar" name="action" value="comprobar" class="w-100 btn btn-lg" style="background-color: #0c8444; color: white;" type="submit">Comprobar</button>
                     </div>
+
+                    <!-- Botón 2 -->
+                    <div class="col-12">
+                        <br />
+                        <button id="btnAceptar" name="action" value="aceptar" class="w-100 btn btn-lg" style="background-color: #0c8444; color: white;" type="submit">Aceptar</button>
+                    </div>
+
+                    
 
 
                     <!-- Modal -->
@@ -113,7 +121,7 @@
         </div>
 
     </div>
+    <script src="/js/index.js"></script>
 
 </form>
 
-<script src="/js/index.js"></script>

@@ -7,7 +7,7 @@ public partial class Botellas
 {
     public int IdBotella { get; set; }
 
-    public string? QuienGuardoMozo { get; set; }
+    public string QuienGuardoMozo { get; set; }
 
     public DateTime FechaGuardado { get; set; }
 

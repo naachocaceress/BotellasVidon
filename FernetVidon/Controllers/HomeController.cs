@@ -32,84 +32,24 @@ public class HomeController : Controller
 
 
 
-    //VIEJO SI FUNCIONA
 
 
     [HttpPost]
-    public IActionResult GuardarDatos(Cliente cliente)
+    public IActionResult GuardarDatos(Cliente cliente, string action)
     {
         if (ModelState.IsValid)
         {
             var clienteExiste = _dbContext.Clientes.FirstOrDefault(c => c.dni == cliente.dni);
 
-            if (clienteExiste == null)
+            if (action == "comprobar")
             {
-                _dbContext.Clientes.Add(cliente);
-                _dbContext.SaveChanges();
-                clienteExiste = cliente; // Actualiza el clienteExiste con el objeto recién agregado
-            }
+                if (clienteExiste == null)
+                {
+                    //ABRIR DIV
+                    return BadRequest();
 
-            var botella = new Botellas
-            {
-                FechaGuardado = DateTime.Now,
-                FechaVencimiento = null, // DateTime.Now.AddDays(30),
-                Estado = "A",
-                IdCliente = clienteExiste.IdCliente,
-                IdSucursal = 1
-            };
-
-            _dbContext.Botellas.Add(botella);
-            _dbContext.SaveChanges();
-
-            // Verifica si la botella se guardó correctamente
-            if (botella.IdBotella > 0)
-            {
-                return Json(new { BotellaId = botella.IdBotella, ClienteName = clienteExiste.Nombre });
-            }
-            else
-            {
-                // En caso de error, devuelve un estado de error
-                return BadRequest();
-            }
-        }
-        else
-        {
-            return BadRequest(ModelState);
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //NUEVO NO FUNCIONA
-
-    [HttpPost]
-    public IActionResult GuardarDatos(Cliente cliente, int btnAceptar)
-    {
-        if (ModelState.IsValid)
-        {
-            var clienteExiste = _dbContext.Clientes.FirstOrDefault(c => c.dni == cliente.dni);
-
-            if (btnAceptar == 0)
-            {
-
-                if (clienteExiste != null)
+                }
+                else
                 {
                     var botella = new Botellas
                     {
@@ -117,54 +57,72 @@ public class HomeController : Controller
                         FechaVencimiento = null, // DateTime.Now.AddDays(30),
                         Estado = "A",
                         IdCliente = clienteExiste.IdCliente,
-                        IdSucursal = 1
+                        IdSucursal = 1,
+                        QuienGuardoMozo = Request.Form["QuienGuardoMozo"]
                     };
 
                     _dbContext.Botellas.Add(botella);
                     _dbContext.SaveChanges();
 
-                    return Json(new { clienteExiste = true, BotellaId = botella.IdBotella, ClienteName = clienteExiste.Nombre });
+                    // Verifica si la botella se guardó correctamente
+                    if (botella.IdBotella > 0)
+                    {
+                        return Json(new { BotellaId = botella.IdBotella, ClienteName = clienteExiste.Nombre });
+                    }
+                    else
+                    {
+                        // En caso de error, devuelve un estado de error
+                        return BadRequest();
+                    }
                 }
-                else
-                {
-                    return Json(new { clienteExiste = false, BotellaId = 0, ClienteName = 0 });
-                }
+
             }
-            else
+            else if (action == "aceptar")
             {
-                _dbContext.Clientes.Add(cliente);
-                _dbContext.SaveChanges();
-                clienteExiste = cliente; // Actualiza el clienteExiste con el objeto recién agregado
-
-                var botella = new Botellas
+                if (clienteExiste == null)
                 {
-                    FechaGuardado = DateTime.Now,
-                    FechaVencimiento = null, // DateTime.Now.AddDays(30),
-                    Estado = "A",
-                    IdCliente = clienteExiste.IdCliente,
-                    IdSucursal = 1
-                };
+                    _dbContext.Clientes.Add(cliente);
+                    _dbContext.SaveChanges();
+                    clienteExiste = cliente; // Actualiza el clienteExiste con el objeto recién agregado
 
-                _dbContext.Botellas.Add(botella);
-                _dbContext.SaveChanges();
+                    var botella = new Botellas
+                    {
+                        FechaGuardado = DateTime.Now,
+                        FechaVencimiento = null, // DateTime.Now.AddDays(30),
+                        Estado = "A",
+                        IdCliente = clienteExiste.IdCliente,
+                        IdSucursal = 1,
+                        QuienGuardoMozo = Request.Form["QuienGuardoMozo"]
+                    };
 
-                // Verifica si la botella se guardó correctamente
-                if (botella.IdBotella > 0)
-                {
-                    return Json(new { clienteExiste = true, BotellaId = botella.IdBotella, ClienteName = clienteExiste.Nombre });
+                    _dbContext.Botellas.Add(botella);
+                    _dbContext.SaveChanges();
+
+                    // Verifica si la botella se guardó correctamente
+                    if (botella.IdBotella > 0)
+                    {
+                        return Json(new { BotellaId = botella.IdBotella, ClienteName = clienteExiste.Nombre });
+                    }
+                    else
+                    {
+                        // En caso de error, devuelve un estado de error
+                        return BadRequest();
+                    }
                 }
                 else
                 {
-                    // En caso de error, devuelve un estado de error
+                    //YA EXISTE
                     return BadRequest();
-                }
 
+                }
             }
+            else 
+                return BadRequest();
+
         }
         else
         {
             return BadRequest(ModelState);
-        }
+        }        
     }
-
 }
