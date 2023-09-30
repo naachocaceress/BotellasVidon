@@ -1,0 +1,119 @@
+﻿@{
+    ViewData["Title"] = "Tu botella";
+}
+
+<form id="myForm" method="post" action="/Home/GuardarDatos">
+
+    <!-- Asegúrate de que jQuery se carga primero -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <div class="text-center" style="padding-left:50px; padding-right:50px;">
+
+        <br />
+        <h2 class="pb-2 border-bottom">Tu botella de Fernet!</h2>
+        <p class="lead">. Completa tus datos y consigue tu número fernetero.</p>
+
+
+        <div class="col-md">
+
+
+            <div class="contenedor">
+                <div class="row g-3">
+
+
+                    <!-- --------------------------------------------------------------------------------------------------------- -->
+
+                    <div class="col-12">
+                        <label for="" class="form-label">Documento</label>
+                        <div class="input-group has-validation">
+                            <input id="dni" name="dni" type="text" class="form-control" required>
+                        </div>
+                    </div>
+
+
+                    <!-- --------------------------------------------------------------------------------------------------------- -->
+
+                    <div id="otrosCampos" style="display: none">
+
+
+                        <div class="col-sm-6">
+                            <label for="Nombre" class="form-label">Nombre</label>
+                            <input id="Nombre" name="Nombre" type="text" class="form-control" >
+                        </div>
+
+
+                        <!-- --------------------------------------------------------------------------------------------------------- -->
+
+                        <div class="col-sm-6">
+                            <label for="" class="form-label">Apellido</label>
+                            <input ID="dato" name="Apellido" runat="server" type="text" class="form-control" >
+                        </div>
+
+                        <!-- --------------------------------------------------------------------------------------------------------- -->
+
+                        <div class="col-sm-6">
+                            <label for="" class="form-label">Número de teléfono</label>
+                            <div class="input-group has-validation">
+                                <input ID="date" runat="server" type="tel" name="NumeroTelefono" class="form-control" >
+                            </div>
+                        </div>
+
+                        <!-- --------------------------------------------------------------------------------------------------------- -->
+
+                        <div class="col-sm-6">
+                            <label for="" class="form-label">Fecha de nacimiento</label>
+                            <div class="input-group has-validation">
+                                <input ID="date" runat="server" type="date" name="FechaNacimiento" class="form-control" placeholder="Username"  TextMode="Date">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- --------------------------------------------------------------------------------------------------------- -->
+
+                    <div class="col-12">
+                        <label for="" class="form-label">Mozo que lo atendió</label>
+                        <div class="input-group has-validation">
+                            <input ID="dato" runat="server" type="text" name="QuienGuardoMozo" class="form-control" required>
+                        </div>
+                    </div>
+
+
+                    <!-- --------------------------------------------------------------------------------------------------------- -->
+
+                    <div class="col-12">
+                        <br />
+                        <button id="btnAceptar" value="0" class="w-100 btn btn-lg" style="background-color: #0c8444; color: white;" type="submit">Aceptar</button>
+                    </div>
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">@ViewData["ClienteName"]</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h1 style="font-size:60px;">@ViewData["BotellaId"]</h1>
+                                    <p>Recuerda darle este número al mozo que te atendio</p>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+<script src="/js/index.js"></script>
