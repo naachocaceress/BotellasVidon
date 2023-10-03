@@ -2,8 +2,8 @@
     ViewData["Title"] = "Tu botella";
 }
 
-<form id="myForm" method="post" action="/Home/GuardarDatos">
-
+ @using (Html.BeginForm("GuardarDatos", "Home"))
+ {
     <!-- Asegúrate de que jQuery se carga primero -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -33,12 +33,11 @@
 
                     <!-- --------------------------------------------------------------------------------------------------------- -->
 
-                    <div id="otrosCampos" class="row g-3">
-
+                    <div id="otrosCampos" class="row g-3" style="display: none;">
 
                         <div class="col-sm-6">
                             <label for="Nombre" class="form-label">Nombre</label>
-                            <input id="Nombre" name="Nombre" type="text" class="form-control" >
+                            <input id="Nombre" name="Nombre" type="text" class="form-control">
                         </div>
 
 
@@ -46,7 +45,7 @@
 
                         <div class="col-sm-6">
                             <label for="" class="form-label">Apellido</label>
-                            <input ID="apellido" name="Apellido" runat="server" type="text" class="form-control" >
+                            <input ID="dato" name="Apellido" runat="server" type="text" class="form-control">
                         </div>
 
                         <!-- --------------------------------------------------------------------------------------------------------- -->
@@ -54,7 +53,7 @@
                         <div class="col-sm-6">
                             <label for="" class="form-label">Número de teléfono</label>
                             <div class="input-group has-validation">
-                                <input ID="date" runat="server" type="tel" name="NumeroTelefono" class="form-control" >
+                                <input ID="date" runat="server" type="tel" name="NumeroTelefono" class="form-control">
                             </div>
                         </div>
 
@@ -63,9 +62,11 @@
                         <div class="col-sm-6">
                             <label for="" class="form-label">Fecha de nacimiento</label>
                             <div class="input-group has-validation">
-                                <input ID="date" runat="server" type="date" name="FechaNacimiento" class="form-control" placeholder="Username"  TextMode="Date">
+                                <input ID="date" runat="server" type="date" name="FechaNacimiento" class="form-control" placeholder="Username" TextMode="Date">
                             </div>
                         </div>
+
+                        
 
                     </div>
 
@@ -74,7 +75,7 @@
                     <div class="col-12">
                         <label for="" class="form-label">Mozo que lo atendió</label>
                         <div class="input-group has-validation">
-                            <input id="quien" runat="server" type="text" name="QuienGuardoMozo" class="form-control" required>
+                            <input ID="dato" runat="server" type="text" name="QuienGuardoMozo" class="form-control" required>
                         </div>
                     </div>
 
@@ -83,16 +84,13 @@
 
                     <div class="col-12">
                         <br />
-                        <button id="btnComprobar" name="action" value="comprobar" class="w-100 btn btn-lg" style="background-color: #0c8444; color: white;" type="submit">Comprobar</button>
+                        <button id="btnGuardar" class="w-100 btn btn-lg" formaction="/Home/GuardarCliente" style="background-color: #0c8444; color: white;" type="submit">Guardar</button>
                     </div>
 
-                    <!-- Botón 2 -->
                     <div class="col-12">
                         <br />
-                        <button id="btnAceptar" name="action" value="aceptar" class="w-100 btn btn-lg" style="background-color: #0c8444; color: white;" type="submit">Aceptar</button>
+                        <button id="btnAceptar" class="w-100 btn btn-lg" style="background-color: #0c8444; color: white;" type="submit">Aceptar</button>
                     </div>
-
-                    
 
 
                     <!-- Modal -->
@@ -121,7 +119,9 @@
         </div>
 
     </div>
+
     <script src="/js/index.js"></script>
 
-</form>
+    }
+
 

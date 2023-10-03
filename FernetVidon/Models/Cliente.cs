@@ -13,7 +13,7 @@ public partial class Cliente
 
     public string? Apellido { get; set; } 
 
-    public DateTime? FechaNacimiento { get; set; }
+    public DateTime FechaNacimiento { get; set; }
 
     public string? NumeroTelefono { get; set; } 
 
