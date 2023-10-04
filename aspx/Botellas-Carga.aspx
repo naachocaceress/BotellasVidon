@@ -35,7 +35,7 @@
     </header>
 
     <form id="form1" runat="server">
-        <div class="text-center" style="padding-left: 50px; padding-right: 50px;">
+        <div class="text-center" style="padding-left: 50px; padding-right: 50px; margin-bottom: 60px;">
 
             <br />
             <h2 class="pb-2 border-bottom">Tu botella de Fernet!</h2>
@@ -71,26 +71,26 @@
 
                             <!-- --------------------------------------------------------------------------------------------------------- -->
 
-                            <div class="col-sm-6">
+                            <div class="col-12">
                                 <label for="" class="form-label">Apellido</label>
                                 <input id="apellido" name="Apellido" runat="server" type="text" class="form-control">
                             </div>
 
                             <!-- --------------------------------------------------------------------------------------------------------- -->
 
-                            <div class="col-sm-6">
+                            <div class="col-12">
                                 <label for="" class="form-label">Número de teléfono</label>
                                 <div class="input-group has-validation">
-                                    <input id="tel" runat="server" type="tel" name="NumeroTelefono" class="form-control">
+                                    <input id="nroTelefono" runat="server" type="tel" name="NumeroTelefono" class="form-control">
                                 </div>
                             </div>
 
                             <!-- --------------------------------------------------------------------------------------------------------- -->
 
-                            <div class="col-sm-6">
+                            <div class="col-12">
                                 <label for="" class="form-label">Fecha de nacimiento</label>
                                 <div class="input-group has-validation">
-                                    <input id="date" runat="server" type="date" name="FechaNacimiento" class="form-control" placeholder="Username" textmode="Date">
+                                    <input id="fechaNacimiento" runat="server" type="date" name="FechaNacimiento" class="form-control" placeholder="Username" textmode="Date">
                                 </div>
                             </div>
 
@@ -166,5 +166,10 @@
         </div>
 
     </form>
+
+    <footer style="background-color: #f4f4f4; padding: 10px; text-align: center; width: 100%; position: absolute; bottom: 0;">
+        <span class="version" style="font-style: italic;">2023</span>&nbsp;<span class="brand" style="font-weight: bold;">&copy;Vidónbar</span>
+    </footer>
+
 </body>
 </html>

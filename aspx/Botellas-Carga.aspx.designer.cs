@@ -69,22 +69,22 @@ namespace VidonVouchers
         protected global::System.Web.UI.HtmlControls.HtmlInputText apellido;
 
         /// <summary>
-        /// Control tel.
+        /// Control nroTelefono.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl tel;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl nroTelefono;
 
         /// <summary>
-        /// Control date.
+        /// Control fechaNacimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl date;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl fechaNacimiento;
 
         /// <summary>
         /// Control mozo.

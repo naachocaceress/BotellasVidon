@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Botellas-Gestion.aspx.cs" Inherits="VidonVouchers.Botellas_Gestion" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Botellas-Gestion.aspx.cs" Inherits="VidonVouchers.Botellas_Gestion" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
 
@@ -43,39 +43,122 @@
                 <div class="contenedor">
                     <div class="row g-3">
 
-                        <br />
 
-                        <div class="table-responsive">
+                        <div class="d-sm-flex justify-content-between flex-wrap">
+                            <div class="component-container">
+                                <label class="component-label">Buscar por id botella</label>
+                                <div class="input-group">
+                                    <asp:TextBox ID="txtId" runat="server" class="form-control" Style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Ingresar id" TextMode="Number"></asp:TextBox>
+                                    &nbsp;&nbsp;
+                                        <div class="input-group-append">
+                                            <asp:Button ID="btnId" class="btn btn-primary" runat="server" Text="Buscar" OnClick="btnId_Click" />
+                                        </div>
+                                </div>
+                            </div>
 
-                            <asp:GridView ID="gvVouchersCreados" runat="server" class="table table-striped table-hover" AutoGenerateColumns="false" AllowPaging="true" OnPageIndexChanging="gvVouchersCreados_PageIndexChanging" PageSize="50">
-                                <Columns>
-                                    <asp:BoundField DataField="idVouchers" HeaderText="ID VCH" />
-                                    <asp:BoundField DataField="nombre" HeaderText="Cliente" />
-                                    <asp:BoundField DataField="monto" HeaderText="Monto" HeaderStyle-CssClass="right-align-header" DataFormatString="{0:N0}">
-                                        <ItemStyle HorizontalAlign="Right" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="saldo" HeaderText="Saldo" HeaderStyle-CssClass="right-align-header" DataFormatString="{0:N0}">
-                                        <ItemStyle HorizontalAlign="Right" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="fechaVen" HeaderText="Fecha Ven." HeaderStyle-CssClass="right-align-header" DataFormatString="{0:dd/MM/yyyy}">
-                                        <ItemStyle HorizontalAlign="Right" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="sucursal_valida" HeaderText="Sucursal" />
-                                    <asp:BoundField DataField="estado" HeaderText="Estado" />
-                                    <asp:BoundField DataField="creado_por" HeaderText="Creado por" />
-                                    <asp:BoundField DataField="fechaCreacion" HeaderText="Fecha creado" />
-                                    <asp:BoundField DataField="horaCreacion" HeaderText="Hora creado" />
-                                </Columns>
-                            </asp:GridView>
+
+                            <div class="component-container">
+                                <label class="component-label">Buscar por documento</label>
+                                <div class="input-group">
+                                    <asp:TextBox ID="txtDni" runat="server" class="form-control" Style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Ingresar documento" TextMode="Number"></asp:TextBox>
+                                    &nbsp;&nbsp;
+                                        <div class="input-group-append">
+                                            <asp:Button ID="btnDni" class="btn btn-primary" runat="server" Text="Buscar" OnClick="btnDni_Click" />
+                                        </div>
+                                </div>
+                            </div>
 
                         </div>
 
 
 
+                        <div class="d-sm-flex justify-content-between flex-wrap">
+                            <div class="d-flex flex-column flex-md-row align-items-md-center">
+                                <asp:Button ID="btnExportExcelBotellas" runat="server" Text="Exportar a Excel" class="btn btn-outline-success" OnClick="btnExportExcelBotellas_Click" />
+                            </div>
+                            &nbsp;
+                            <div class="d-flex align-items-center">
+                                <span style="white-space: nowrap; margin-right: 5px;">Cantidad de resultados:</span>
+
+                                <asp:DropDownList ID="ddlPageSizeBotellas" runat="server" class="form-select ml-2" Style="max-width: 80px;" AutoPostBack="true" OnSelectedIndexChanged="ddlPageSizeBotellas_SelectedIndexChanged" Disabled="true">
+                                    <asp:ListItem Text="50" Value="50"></asp:ListItem>
+                                    <asp:ListItem Text="100" Value="100"></asp:ListItem>
+                                    <asp:ListItem Text="200" Value="200"></asp:ListItem>
+                                    <asp:ListItem Text="300" Value="300"></asp:ListItem>
+                                    <asp:ListItem Text="400" Value="400"></asp:ListItem>
+                                    <asp:ListItem Text="500" Value="500"></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+
+                        </div>
+
+
+                        <div class="table-responsive">
+
+                            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                <ContentTemplate>
+
+                                    <asp:GridView ID="gvBotellas" runat="server" class="table table-striped table-hover" AutoGenerateColumns="false" AllowPaging="true" OnPageIndexChanging="gvBotellas_PageIndexChanging" PageSize="50" DataKeyNames="idBotella">
+                                        <Columns>
+                                            <asp:BoundField DataField="idBotella" HeaderText="ID Botella" />
+                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" />
+                                            <asp:BoundField DataField="apellido" HeaderText="Apellido" />
+                                            <asp:BoundField DataField="dni" HeaderText="Documento" HeaderStyle-CssClass="right-align-header" DataFormatString="{0:N0}"></asp:BoundField>
+                                            <asp:BoundField DataField="fechaGuar" HeaderText="Fecha Guardado" HeaderStyle-CssClass="right-align-header" DataFormatString="{0:dd/MM/yyyy}"></asp:BoundField>
+                                            <asp:BoundField DataField="mozo" HeaderText="Guardado por" />
+
+                                            <asp:TemplateField HeaderText="Estado">
+                                                <ItemTemplate>
+                                                    <asp:Button runat="server" ID="btnEstado" OnClick="btnEstado_Click"
+                                                        Style="width: 80px;" Text='<%# Eval("estado").ToString() == "B" ? "Inactivo" : "Activo" %>'
+                                                        CssClass='<%# Eval("estado").ToString() == "B" ? "btn btn-danger" : "btn btn-success" %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Eliminar">
+                                                <ItemTemplate>
+                                                    <asp:Button runat="server" Text="Eliminar" class="btn btn-outline-dark" ID="btnEliminar" OnClick="btnEliminar_Click" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+
+                                    </div>
+
+                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog ">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                                                    <asp:Label ID="lblNombre" runat="server" Text=""></asp:Label></h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h5>Estas por eliminar la botella Nro
+                                            <asp:Label ID="lblNumero" runat="server" Text=""></asp:Label></h5>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <asp:Button ID="eliminar" class="btn btn-success" runat="server" data-bs-dismiss="modal" Text="Aceptar" OnClick="eliminar_Click" />
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </form>
+
+
+    <%--<footer style="background-color: #f4f4f4; padding: 10px; text-align: center; width: 100%; position: absolute; bottom: 0;">
+        <span class="version" style="font-style: italic;">Botellas - Versión 1.0</span>&nbsp;<span class="brand" style="font-weight: bold;">&copy;Vidónbar</span>
+    </footer>--%>
+
 </body>
 </html>

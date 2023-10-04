@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using static System.Windows.Forms.LinkLabel;
-using VidonVouchers.Models;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Web.UI;
 using System.Web.UI.HtmlControls;
 
 namespace VidonVouchers
@@ -86,7 +80,7 @@ namespace VidonVouchers
                     }
                 }
                 else if (displayValue == "block")
-                {                   
+                {
                     using (SqlConnection connection = new SqlConnection(conexion))
                     {
                         connection.Open();
@@ -129,7 +123,7 @@ namespace VidonVouchers
                                 </script>";
 
                                 ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", script, false);
-                               
+
                             }
                         }
                     }
@@ -142,8 +136,8 @@ namespace VidonVouchers
             SqlDataSource1.InsertParameters["dni"].DefaultValue = dni.Value;
             SqlDataSource1.InsertParameters["nombre"].DefaultValue = nombre.Value;
             SqlDataSource1.InsertParameters["apellido"].DefaultValue = apellido.Value;
-            SqlDataSource1.InsertParameters["fechaNacimiento"].DefaultValue = date.Value;
-            SqlDataSource1.InsertParameters["nroTelefono"].DefaultValue = tel.Value;
+            SqlDataSource1.InsertParameters["fechaNacimiento"].DefaultValue = fechaNacimiento.Value;
+            SqlDataSource1.InsertParameters["nroTelefono"].DefaultValue = nroTelefono.Value;
             SqlDataSource1.Insert();
         }
 
