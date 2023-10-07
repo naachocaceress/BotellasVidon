@@ -54,7 +54,7 @@
                         <div class="col-12">
                             <label for="" class="form-label">Documento</label>
                             <div class="input-group has-validation">
-                                <input id="dni" name="dni" type="text" runat="server" class="form-control" required>
+                                <asp:TextBox ID="dni" runat="server" class="form-control" required="true"></asp:TextBox>
                             </div>
                         </div>
 
@@ -63,9 +63,9 @@
 
                         <div id="otrosCampos" class="col-12" runat="server" style="display: none;">
 
-                            <div class="col-sm-6" style="display: none;">
+                            <div class="col-12">
                                 <label for="Nombre" class="form-label">Nombre</label>
-                                <input id="nombre" name="Nombre" type="text" runat="server" class="form-control">
+                                <asp:TextBox ID="nombre" runat="server" class="form-control"></asp:TextBox>
                             </div>
 
 
@@ -73,7 +73,7 @@
 
                             <div class="col-12">
                                 <label for="" class="form-label">Apellido</label>
-                                <input id="apellido" name="Apellido" runat="server" type="text" class="form-control">
+                                <asp:TextBox ID="apellido" runat="server" class="form-control"></asp:TextBox>
                             </div>
 
                             <!-- --------------------------------------------------------------------------------------------------------- -->
@@ -81,7 +81,7 @@
                             <div class="col-12">
                                 <label for="" class="form-label">Número de teléfono</label>
                                 <div class="input-group has-validation">
-                                    <input id="nroTelefono" runat="server" type="tel" name="NumeroTelefono" class="form-control">
+                                    <asp:TextBox ID="nroTelefono" runat="server" class="form-control" TextMode="Phone"></asp:TextBox>
                                 </div>
                             </div>
 
@@ -90,7 +90,7 @@
                             <div class="col-12">
                                 <label for="" class="form-label">Fecha de nacimiento</label>
                                 <div class="input-group has-validation">
-                                    <input id="fechaNacimiento" runat="server" type="date" name="FechaNacimiento" class="form-control" placeholder="Username" textmode="Date">
+                                    <asp:TextBox ID="fechaNacimiento" runat="server" class="form-control" TextMode="Date"></asp:TextBox>
                                 </div>
                             </div>
 
@@ -101,7 +101,7 @@
                         <div class="col-12">
                             <label for="" class="form-label">Mozo que lo atendió</label>
                             <div class="input-group has-validation">
-                                <input id="mozo" runat="server" type="text" name="QuienGuardoMozo" class="form-control" required>
+                                <asp:TextBox ID="mozo" runat="server" class="form-control" required="true"></asp:TextBox>
                             </div>
                         </div>
 

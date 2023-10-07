@@ -39,7 +39,7 @@ namespace VidonVouchers
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText dni;
+        protected global::System.Web.UI.WebControls.TextBox dni;
 
         /// <summary>
         /// Control otrosCampos.
@@ -57,7 +57,7 @@ namespace VidonVouchers
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText nombre;
+        protected global::System.Web.UI.WebControls.TextBox nombre;
 
         /// <summary>
         /// Control apellido.
@@ -66,7 +66,7 @@ namespace VidonVouchers
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText apellido;
+        protected global::System.Web.UI.WebControls.TextBox apellido;
 
         /// <summary>
         /// Control nroTelefono.
@@ -75,7 +75,7 @@ namespace VidonVouchers
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl nroTelefono;
+        protected global::System.Web.UI.WebControls.TextBox nroTelefono;
 
         /// <summary>
         /// Control fechaNacimiento.
@@ -84,7 +84,7 @@ namespace VidonVouchers
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl fechaNacimiento;
+        protected global::System.Web.UI.WebControls.TextBox fechaNacimiento;
 
         /// <summary>
         /// Control mozo.
@@ -93,7 +93,7 @@ namespace VidonVouchers
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText mozo;
+        protected global::System.Web.UI.WebControls.TextBox mozo;
 
         /// <summary>
         /// Control SqlDataSource1.

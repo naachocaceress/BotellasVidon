@@ -23,7 +23,16 @@ namespace VidonVouchers
                 string query = "SELECT nombre from SUCURSALES where idSucursal = " + sucu;
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    lblSucu.InnerText = command.ExecuteScalar().ToString();
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        lblSucu.InnerText = result.ToString();
+                    }
+                    else
+                    {
+                        // Manejo de caso en el que no se encontraron resultados
+                        lblSucu.InnerText = "No se encontraron resultados.";
+                    }
                 }
 
             }
@@ -47,7 +56,7 @@ namespace VidonVouchers
 
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
-                            command.Parameters.AddWithValue("@dnia", dni.Value);
+                            command.Parameters.AddWithValue("@dnia", dni.Text);
 
                             object idCliente = command.ExecuteScalar();
                             int count = (int)command.ExecuteScalar();
@@ -88,7 +97,7 @@ namespace VidonVouchers
 
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
-                            command.Parameters.AddWithValue("@dnia", dni.Value);
+                            command.Parameters.AddWithValue("@dnia", dni.Text);
 
                             object idCliente = command.ExecuteScalar();
                             int count = (int)command.ExecuteScalar();
@@ -133,11 +142,11 @@ namespace VidonVouchers
 
         public void GuardarCliente()
         {
-            SqlDataSource1.InsertParameters["dni"].DefaultValue = dni.Value;
-            SqlDataSource1.InsertParameters["nombre"].DefaultValue = nombre.Value;
-            SqlDataSource1.InsertParameters["apellido"].DefaultValue = apellido.Value;
-            SqlDataSource1.InsertParameters["fechaNacimiento"].DefaultValue = fechaNacimiento.Value;
-            SqlDataSource1.InsertParameters["nroTelefono"].DefaultValue = nroTelefono.Value;
+            SqlDataSource1.InsertParameters["dni"].DefaultValue = dni.Text;
+            SqlDataSource1.InsertParameters["nombre"].DefaultValue = nombre.Text;
+            SqlDataSource1.InsertParameters["apellido"].DefaultValue = apellido.Text;
+            SqlDataSource1.InsertParameters["fechaNacimiento"].DefaultValue = fechaNacimiento.Text;
+            SqlDataSource1.InsertParameters["nroTelefono"].DefaultValue = nroTelefono.Text;
             SqlDataSource1.Insert();
         }
 
@@ -152,14 +161,14 @@ namespace VidonVouchers
                 connection.Open();
 
                 // Consulta para obtener el último ID insertado
-                string query = "SELECT idCliente from Clientes.Cliente where dni = " + dni.Value;
+                string query = "SELECT idCliente from Clientes.Cliente where dni = " + dni.Text;
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     idCliente = command.ExecuteScalar().ToString();
                 }
             }
 
-            SqlDataSource2.InsertParameters["mozo"].DefaultValue = mozo.Value;
+            SqlDataSource2.InsertParameters["mozo"].DefaultValue = mozo.Text;
             SqlDataSource2.InsertParameters["fechaGuardado"].DefaultValue = DateTime.Now.ToString();
             SqlDataSource2.InsertParameters["fechaVencimiento"].DefaultValue = null;
             SqlDataSource2.InsertParameters["idCliente"].DefaultValue = idCliente;
@@ -195,7 +204,7 @@ namespace VidonVouchers
                 connection.Open();
 
                 // Consulta para obtener el último ID insertado
-                string query = "SELECT Nombre from Clientes.Cliente where dni = " + dni.Value;
+                string query = "SELECT Nombre from Clientes.Cliente where dni = " + dni.Text;
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     return command.ExecuteScalar().ToString();

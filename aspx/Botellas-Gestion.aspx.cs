@@ -1,15 +1,10 @@
 ﻿using OfficeOpenXml;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Windows.Forms;
 using Button = System.Web.UI.WebControls.Button;
 
 namespace VidonVouchers
@@ -37,7 +32,16 @@ namespace VidonVouchers
                 string query = "SELECT nombre from SUCURSALES where idSucursal = " + sucu;
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    lblSucu.InnerText = command.ExecuteScalar().ToString();
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        lblSucu.InnerText = result.ToString();
+                    }
+                    else
+                    {
+                        // Manejo de caso en el que no se encontraron resultados
+                        lblSucu.InnerText = "No se encontraron resultados.";
+                    }
                 }
 
             }
