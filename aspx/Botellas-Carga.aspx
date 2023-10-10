@@ -6,33 +6,32 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Botella fernetera</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-
     <header class="p-3" style="background-color: #0C8444; z-index: 9; left: 0; right: 0; text-align: center;">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center" style="height: 50px;">
-                <a href="default.aspx" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <img src="/Imagenes/Vidon bar ORIGINAL.png" alt="logo" style="width: 60px;">
-                </a>
-                &nbsp;&nbsp;&nbsp;
-            <div class="text-end">
-                <h3 class="float-md-start mb-0" style="color: white;">VIDÓN BAR</h3>
-            </div>
-            </div>
-            <hr />
-            <span class="sucursal" style="color: #fdc030;">Sucursal:
-                <label id="lblSucu" runat="server"></label>
-            </span>
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center" style="height: 50px;">
+            <a href="default.aspx" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <img src="/Imagenes/Vidon bar ORIGINAL.png" alt="logo" style="width: 60px;">
+            </a>
+            &nbsp;&nbsp;&nbsp;
+<div class="text-end">
+    <h3 class="float-md-start mb-0" style="color: white;">VIDÓN BAR</h3>
+</div>
         </div>
-    </header>
+        <hr />
+        <span class="sucursal" style="color: #fdc030;">Sucursal:
+    <label id="lblSucu" runat="server"></label>
+        </span>
+    </div>
+</header>
+    
 
     <form id="form1" runat="server">
         <div class="text-center" style="padding-left: 50px; padding-right: 50px; margin-bottom: 60px;">
@@ -54,7 +53,7 @@
                         <div class="col-12">
                             <label for="" class="form-label">Documento</label>
                             <div class="input-group has-validation">
-                                <asp:TextBox ID="dni" runat="server" class="form-control" required="true"></asp:TextBox>
+                                <asp:TextBox ID="dni" runat="server" class="form-control" required="true" TextMode="Number"></asp:TextBox>
                             </div>
                         </div>
 
@@ -143,7 +142,6 @@
                                     <div class="modal-header">
                                         <h3 class="modal-title fs-5" id="staticBackdropLabel">
                                             <asp:Label ID="lblNombre" runat="server" Text="Label"></asp:Label></h3>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <h1 style="font-size: 60px;">
@@ -152,12 +150,11 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                        <asp:Button ID="cerrarmodal" OnClick="cerrarmodal_Click" type="button" class="btn btn-danger" data-bs-dismiss="modal" runat="server" Text="Cerrar"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
 
                     </div>
                 </div>
@@ -165,11 +162,7 @@
 
         </div>
 
-    </form>
-
-    <footer style="background-color: #f4f4f4; padding: 10px; text-align: center; width: 100%; position: absolute; bottom: 0;">
-        <span class="version" style="font-style: italic;">2023</span>&nbsp;<span class="brand" style="font-weight: bold;">&copy;Vidónbar</span>
-    </footer>
+    </form>   
 
 </body>
 </html>

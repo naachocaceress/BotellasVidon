@@ -34,8 +34,8 @@ namespace VidonVouchers
                         lblSucu.InnerText = "No se encontraron resultados.";
                     }
                 }
-
             }
+
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
@@ -83,6 +83,11 @@ namespace VidonVouchers
                                 {
                                     // Establece el estilo "display" en "block"
                                     miDiv.Style["display"] = "block";
+
+                                    nombre.Attributes["required"] = "true";
+                                    apellido.Attributes["required"] = "true";
+                                    nroTelefono.Attributes["required"] = "true";
+                                    fechaNacimiento.Attributes["required"] = "true";
                                 }
                             }
                         }
@@ -211,6 +216,12 @@ namespace VidonVouchers
                 }
             }
         }
+
+        protected void cerrarmodal_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Request.Url.ToString());
+        }
+
 
     }
 }
