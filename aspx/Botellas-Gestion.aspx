@@ -116,37 +116,12 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Eliminar">
-                                                <ItemTemplate>
-                                                    <asp:Button runat="server" Text="Eliminar" class="btn btn-outline-dark" ID="btnEliminar" OnClick="btnEliminar_Click" />
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
 
                                     </div>
 
-                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog ">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                                                    <asp:Label ID="lblNombre" runat="server" Text=""></asp:Label></h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h5>Estas por eliminar la botella Nro
-                                            <asp:Label ID="lblNumero" runat="server" Text=""></asp:Label></h5>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <asp:Button ID="eliminar" class="btn btn-success" runat="server" data-bs-dismiss="modal" Text="Aceptar" OnClick="eliminar_Click" />
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                </ContentTemplate>
+                              </ContentTemplate>
                             </asp:UpdatePanel>
 
                         </div>
