@@ -17,7 +17,7 @@
     <header class="p-3" style="background-color: #0C8444; z-index: 9; left: 0; right: 0; text-align: center;">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center" style="height: 50px;">
-                <a href="default.aspx" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <a href="https://www.instagram.com/vidonbar/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                     <img src="/Imagenes/Vidon bar ORIGINAL.png" alt="logo" style="width: 60px;">
                 </a>
                 &nbsp;&nbsp;&nbsp;
@@ -80,9 +80,9 @@
                             <div class="d-flex align-items-center">
                                 <span style="white-space: nowrap; margin-right: 5px;">Cantidad de resultados:</span>
 
-                                <asp:DropDownList ID="ddlPageSizeBotellas" runat="server" class="form-select ml-2" Style="max-width: 80px;" AutoPostBack="true" OnSelectedIndexChanged="ddlPageSizeBotellas_SelectedIndexChanged" Disabled="true">
-                                    <asp:ListItem Text="50" Value="50"></asp:ListItem>
-                                    <asp:ListItem Text="100" Value="100"></asp:ListItem>
+                                <asp:DropDownList ID="ddlPageSizeBotellas" runat="server" class="form-select ml-2" Style="max-width: 80px;" AutoPostBack="true" OnSelectedIndexChanged="ddlPageSizeBotellas_SelectedIndexChanged">
+                                    <asp:ListItem Text="5" Value="5"></asp:ListItem>
+                                    <asp:ListItem Text="10" Value="10"></asp:ListItem>
                                     <asp:ListItem Text="200" Value="200"></asp:ListItem>
                                     <asp:ListItem Text="300" Value="300"></asp:ListItem>
                                     <asp:ListItem Text="400" Value="400"></asp:ListItem>

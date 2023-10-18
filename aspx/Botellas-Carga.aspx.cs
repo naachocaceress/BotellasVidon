@@ -166,23 +166,63 @@ namespace VidonVouchers
                 connection.Open();
 
                 // Consulta para obtener el último ID insertado
-                string query = "SELECT idCliente from Clientes.Cliente where dni = " + dni.Text;
+                string query = "SELECT idCliente FROM Clientes.Cliente WHERE dni = " + dni.Text;
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     idCliente = command.ExecuteScalar().ToString();
                 }
             }
 
+            // Asignar un valor a numeroBotella, puedes obtenerlo de algún lugar apropiado, por ejemplo, generarlo automáticamente o recogerlo de un control de entrada en tu página web.
+            int numeroBotellaValue = ObtenerNumeroBotella(); // Implementa esta función según tus necesidades.
+
             SqlDataSource2.InsertParameters["mozo"].DefaultValue = mozo.Text;
-            SqlDataSource2.InsertParameters["fechaGuardado"].DefaultValue = DateTime.Now.ToString();
+            SqlDataSource2.InsertParameters["fechaGuardado"].DefaultValue = DateTime.Now.ToString("yyyy-MM-dd");
             SqlDataSource2.InsertParameters["fechaVencimiento"].DefaultValue = null;
             SqlDataSource2.InsertParameters["idCliente"].DefaultValue = idCliente;
-            SqlDataSource2.InsertParameters["idSucursal"].DefaultValue = Request.QueryString["sucursal"]; ;
+            SqlDataSource2.InsertParameters["idSucursal"].DefaultValue = Request.QueryString["sucursal"];
+            SqlDataSource2.InsertParameters["numeroBotella"].DefaultValue = numeroBotellaValue.ToString(); // Asigna el valor de numeroBotella
             SqlDataSource2.Insert();
         }
 
+        // Implementa ObtenerNumeroBotella para generar o recuperar el valor de numeroBotella según tus necesidades.
+        private int ObtenerNumeroBotella()
+        {
+            string sucu = Request.QueryString["sucursal"];
+
+            int numeroBotella = 1; // Valor predeterminado si no se encuentra ningún registro
+
+            string connectionString = ConfigurationManager.ConnectionStrings["VVoucher2ConnectionString"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT MAX(numeroBotella) + 1 FROM Clientes.Botellas WHERE idSucursal = @idSucursal";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@idSucursal", sucu);
+
+                    // Ejecutar la consulta y manejar el resultado
+                    var result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        numeroBotella = Convert.ToInt32(result);
+                    }
+                }
+            }
+
+            return numeroBotella;
+        }
+
+
+
         private int ObtenerUltimoIdInsertado()
         {
+            string sucu = Request.QueryString["sucursal"];
+
             string connectionString = ConfigurationManager.ConnectionStrings["VVoucher2ConnectionString"].ConnectionString;
 
             // Establecer la conexión con la base de datos
@@ -191,7 +231,7 @@ namespace VidonVouchers
                 connection.Open();
 
                 // Consulta para obtener el último ID insertado
-                string query = "SELECT IDENT_CURRENT('Clientes.Botellas') AS LastID";
+                string query = "SELECT MAX(numeroBotella) FROM Clientes.Botellas WHERE idSucursal = " + sucu;
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     return Convert.ToInt32(command.ExecuteScalar());
@@ -216,12 +256,6 @@ namespace VidonVouchers
                 }
             }
         }
-
-        protected void cerrarmodal_Click(object sender, EventArgs e)
-        {
-            Response.Redirect(Request.Url.ToString());
-        }
-
 
     }
 }

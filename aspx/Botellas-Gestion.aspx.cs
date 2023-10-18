@@ -52,7 +52,7 @@ namespace VidonVouchers
             if (txtDni.Text == "" && txtId.Text == "")
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["VVoucher2ConnectionString"].ConnectionString;
-                string query = "SELECT b.idBotella as idBotella, c.nombre, c.apellido, c.dni, b.fechaGuardado as fechaGuar, b.quienGuardoMozo as mozo, b.estado " +
+                string query = "SELECT b.numeroBotella as idBotella, c.nombre, c.apellido, c.dni, b.fechaGuardado as fechaGuar, b.quienGuardoMozo as mozo, b.estado " +
                     "FROM Clientes.Botellas as b " +
                     "JOIN Clientes.Cliente as c ON b.idCliente = c.idCliente " +
                     "WHERE b.idSucursal = @sucu " +
@@ -112,8 +112,10 @@ namespace VidonVouchers
 
         private string ObtenerEstadoDesdeBD(string idBotella)
         {
+            string sucu = Request.QueryString["sucursal"];
+
             string connectionString = ConfigurationManager.ConnectionStrings["VVoucher2ConnectionString"].ConnectionString;
-            string query = "Select estado from Clientes.Botellas where idBotella = @id ";
+            string query = "Select estado from Clientes.Botellas where numeroBotella = @id AND idSucursal = " + sucu;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -144,10 +146,12 @@ namespace VidonVouchers
 
         private void ActualizarEstadoEnBD(string idBotella, string nuevoEstado)
         {
+            string sucu = Request.QueryString["sucursal"];
+
             string connectionString = ConfigurationManager.ConnectionStrings["VVoucher2ConnectionString"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
 
-            string query = "UPDATE Clientes.Botellas SET estado = @nuevoEstado WHERE idBotella = @idBotella";
+            string query = "UPDATE Clientes.Botellas SET estado = @nuevoEstado WHERE numeroBotella = @idBotella AND idSucursal = " + sucu;
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@nuevoEstado", nuevoEstado);
@@ -176,10 +180,10 @@ namespace VidonVouchers
             if (!string.IsNullOrEmpty(idBotella))
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["VVoucher2ConnectionString"].ConnectionString;
-                string query = "SELECT b.idBotella as idBotella, c.nombre, c.apellido, c.dni, b.fechaGuardado as fechaGuar, b.quienGuardoMozo as mozo, b.estado " +
+                string query = "SELECT b.numeroBotella as idBotella, c.nombre, c.apellido, c.dni, b.fechaGuardado as fechaGuar, b.quienGuardoMozo as mozo, b.estado " +
                     "FROM Clientes.Botellas as b " +
                     "JOIN Clientes.Cliente as c ON b.idCliente = c.idCliente " +
-                    "WHERE b.idSucursal = @sucu AND idBotella = @idBotella " +
+                    "WHERE b.idSucursal = @sucu AND numeroBotella = @idBotella " +
                     "ORDER BY idBotella DESC";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -214,7 +218,7 @@ namespace VidonVouchers
             if (!string.IsNullOrEmpty(dni))
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["VVoucher2ConnectionString"].ConnectionString;
-                string query = "SELECT b.idBotella as idBotella, c.nombre, c.apellido, c.dni, b.fechaGuardado as fechaGuar, b.quienGuardoMozo as mozo, b.estado " +
+                string query = "SELECT b.numeroBotella as idBotella, c.nombre, c.apellido, c.dni, b.fechaGuardado as fechaGuar, b.quienGuardoMozo as mozo, b.estado " +
                     "FROM Clientes.Botellas as b " +
                     "JOIN Clientes.Cliente as c ON b.idCliente = c.idCliente " +
                     "WHERE b.idSucursal = @sucu AND c.dni = @dni " +
@@ -286,7 +290,15 @@ namespace VidonVouchers
 
         protected void ddlPageSizeBotellas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //RecopilarDatos(1, "Vouchers", "VOUCHER", DropDownSucursales1, ddlEstadoVch1, dateDesde, dateHasta, txtMontoMinimo, txtMontoMaximo, txtId, txtCliente, ddlPageSizeVouchersCreados, gvVouchersCreados);
+            string sucu = Request.QueryString["sucursal"];
+
+            int newPageSize = Convert.ToInt32(ddlPageSizeBotellas.SelectedValue);
+
+            // Actualizar la propiedad PageSize del GridView
+            gvBotellas.PageSize = newPageSize;
+
+            // Volver a vincular los datos al GridView con la nueva PageSize
+            Tabla(sucu);
         }
 
         protected void gvBotellas_PageIndexChanging(object sender, GridViewPageEventArgs e)

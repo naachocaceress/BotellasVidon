@@ -6,32 +6,32 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Botella fernetera</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
     <header class="p-3" style="background-color: #0C8444; z-index: 9; left: 0; right: 0; text-align: center;">
-    <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center" style="height: 50px;">
-            <a href="default.aspx" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <img src="/Imagenes/Vidon bar ORIGINAL.png" alt="logo" style="width: 60px;">
-            </a>
-            &nbsp;&nbsp;&nbsp;
-<div class="text-end">
-    <h3 class="float-md-start mb-0" style="color: white;">VIDÓN BAR</h3>
-</div>
-        </div>
-        <hr />
-        <span class="sucursal" style="color: #fdc030;">Sucursal:
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center" style="height: 50px;">
+                <a href="https://www.instagram.com/vidonbar/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <img src="/Imagenes/Vidon bar ORIGINAL.png" alt="logo" style="width: 60px;">
+                </a>
+                &nbsp;&nbsp;&nbsp;
+                <div class="text-end">
+                    <h3 class="float-md-start mb-0" style="color: white;">VIDÓN BAR</h3>
+                </div>
+            </div>
+            <hr />
+            <span class="sucursal" style="color: #fdc030;">Sucursal:
     <label id="lblSucu" runat="server"></label>
-        </span>
-    </div>
-</header>
-    
+            </span>
+        </div>
+    </header>
+
 
     <form id="form1" runat="server">
         <div class="text-center" style="padding-left: 50px; padding-right: 50px; margin-bottom: 60px;">
@@ -117,17 +117,20 @@
                             </InsertParameters>
                         </asp:SqlDataSource>
 
-                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:VVoucher2ConnectionString %>" InsertCommand="INSERT INTO Clientes.Botellas (quienGuardoMozo, fechaGuardado, fechaVencimiento, estado, idCliente, idSucursal)
-                            VALUES (@mozo, @fechaGuardado, @fechaVencimiento, 'A', @idCliente, @idSucursal);"
-                            SelectCommand="select * from Clientes.Botellas">
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:VVoucher2ConnectionString %>"
+                            InsertCommand="INSERT INTO Clientes.Botellas (numeroBotella, quienGuardoMozo, fechaGuardado, fechaVencimiento, estado, idCliente, idSucursal)
+    VALUES (@numeroBotella, @mozo, @fechaGuardado, @fechaVencimiento, 'A', @idCliente, @idSucursal);"
+                            SelectCommand="SELECT * FROM Clientes.Botellas">
                             <InsertParameters>
-                                <asp:Parameter Name="mozo"></asp:Parameter>
-                                <asp:Parameter Name="fechaGuardado"></asp:Parameter>
-                                <asp:Parameter Name="fechaVencimiento"></asp:Parameter>
-                                <asp:Parameter Name="idCliente"></asp:Parameter>
-                                <asp:Parameter Name="idSucursal"></asp:Parameter>
+                                <asp:Parameter Name="numeroBotella" />
+                                <asp:Parameter Name="mozo" />
+                                <asp:Parameter Name="fechaGuardado" />
+                                <asp:Parameter Name="fechaVencimiento" />
+                                <asp:Parameter Name="idCliente" />
+                                <asp:Parameter Name="idSucursal" />
                             </InsertParameters>
                         </asp:SqlDataSource>
+
 
                         <div class="col-12">
                             <br />
@@ -150,11 +153,51 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <asp:Button ID="cerrarmodal" OnClick="cerrarmodal_Click" type="button" class="btn btn-danger" data-bs-dismiss="modal" runat="server" Text="Cerrar"/>
+                                        <a href="https://www.instagram.com/vidonbar/" class="btn btn-danger">Cerrar</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <script>
+
+                            // Registra la hora de inicio de la visita en una cookie o almacenamiento local
+                            localStorage.setItem('inicioVisita', new Date().getTime());
+
+                            // Establece un temporizador para verificar el tiempo transcurrido
+                            var tiempoTranscurrido = 0; // Declarar la variable fuera de la función
+                            var tiempoLimite = 900000; // 10 minuto en milisegundos
+
+                            var verificarTiempo = function () {
+                                var inicioVisita = localStorage.getItem('inicioVisita');
+                                tiempoTranscurrido = new Date().getTime() - inicioVisita;
+
+                                if (tiempoTranscurrido >= tiempoLimite) {
+                                    // Redirige a Instagram
+                                    window.location.href = 'https://www.instagram.com/vidonbar/';
+                                }
+                            };
+
+                            setInterval(verificarTiempo, 1000); // Verifica cada segundo
+
+                            // En la redirección a Instagram, agrega un nuevo estado a la historia
+                            window.history.pushState({}, document.title, 'vidonbar');
+
+                            // Para prevenir la navegación hacia atrás
+                            window.onpopstate = function (event) {
+                                if (window.location.href.indexOf('vidonbar') === -1) {
+                                    // Si intenta volver atrás, redirige nuevamente a Instagram
+                                    window.location.href = 'https://www.instagram.com/vidonbar/';
+                                }
+                            };
+
+                            // Imprime el tiempo transcurrido en la consola
+                            setInterval(function () {
+                                console.log(tiempoTranscurrido / 1000);
+                            }, 1000);
+
+
+                        </script>
 
                     </div>
                 </div>
@@ -162,7 +205,7 @@
 
         </div>
 
-    </form>   
+    </form>
 
 </body>
 </html>
