@@ -57,6 +57,13 @@ namespace VidonBotellasMVC.Controllers
             return View();
         }
 
+        public class BotellaClienteViewModel
+        {
+            public IEnumerable<VidonBotellasMVC.Models.Botella> Botellas { get; set; }
+            public IEnumerable<VidonBotellasMVC.Models.Cliente> Clientes { get; set; }
+        }
+
+
         public IActionResult GetBotellasData(int sucursal)
         {
             var query = from b in _dbContext.Botellas
@@ -77,6 +84,32 @@ namespace VidonBotellasMVC.Controllers
             var botellas = query.ToList();
 
             return Json(botellas);
+        }
+
+        [HttpPost]
+        public IActionResult CambiarEstadoBotella(int idBotella)
+        {
+            // Busca la botella por su ID
+            var botella = _dbContext.Botellas.FirstOrDefault(b => b.IdBotella == idBotella);
+
+            if (botella != null)
+            {
+                // Cambia el estado de la botella
+                if (botella.Estado == "A")
+                {
+                    botella.Estado = "B";
+                }
+                else if (botella.Estado == "B")
+                {
+                    botella.Estado = "A";
+                }
+
+                // Guarda los cambios en la base de datos
+                _dbContext.SaveChanges();
+            }
+
+            // Devuelve una respuesta vacía
+            return new EmptyResult();
         }
 
     }
