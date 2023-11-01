@@ -1,0 +1,480 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAVZU4/SmKV0OaePMvtq7/mwAAAAACAAAAAAAQZgAAAAEAACAAAADBCqCwA+WVvYtsghYiI/T5PZdS/hy/nRLHfD9wtf6/UwAAAAAOgAAAAAIAACAAAACPwHPGzG1pf9JVl3gpnJ93tnpmRbW/NE8YZgihA84X9SAAAACIpQtAr9CcBCrkT9pDIyc4ol+PHa5jEOvYs1qFjZjxIkAAAAC5Kl76ZuybgsQwY6cicelpJhDGtQyCPhPYUGDWi8SQBysCQEj5Cpwy3aEnJzr5DAm/natgExIMmNiZ1WbK/0cY</EncryptedPassword>
+    <_PublishTargetUrl>ftp://50.63.8.144/sistemas.vidonbar.com.ar/VBotellas</_PublishTargetUrl>
+    <History>True|2023-10-27T02:24:53.1863939Z;True|2023-10-17T22:57:23.2611799-03:00;True|2023-10-17T21:50:34.0550406-03:00;True|2023-10-09T19:58:47.0424672-03:00;True|2023-10-05T17:30:29.9748969-03:00;True|2023-10-05T15:57:10.8955215-03:00;True|2023-10-05T15:09:05.6330882-03:00;True|2023-10-04T23:36:20.9138701-03:00;True|2023-10-04T17:43:33.9255073-03:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>09/10/2013 16:29:20</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>09/10/2013 16:29:20</publishTime>
+    </File>
+    <File Include="bin/AspNet.ScriptManager.bootstrap.dll">
+      <publishTime>12/01/2022 07:34:50</publishTime>
+    </File>
+    <File Include="bin/AspNet.ScriptManager.jQuery.dll">
+      <publishTime>08/23/2023 05:52:44</publishTime>
+    </File>
+    <File Include="bin/EPPlus.dll">
+      <publishTime>10/02/2023 09:54:12</publishTime>
+    </File>
+    <File Include="bin/EPPlus.Interfaces.dll">
+      <publishTime>11/21/2022 09:51:04</publishTime>
+    </File>
+    <File Include="bin/EPPlus.System.Drawing.dll">
+      <publishTime>11/21/2022 09:51:06</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.AspNet.FriendlyUrls.resources.dll">
+      <publishTime>07/30/2013 17:01:46</publishTime>
+    </File>
+    <File Include="bin/es/System.Web.Optimization.resources.dll">
+      <publishTime>02/11/2014 15:28:40</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.FriendlyUrls.dll">
+      <publishTime>07/30/2013 16:57:30</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Web.Optimization.WebForms.dll">
+      <publishTime>02/11/2014 15:26:04</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>03/05/2023 19:41:40</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IO.RecyclableMemoryStream.dll">
+      <publishTime>03/02/2023 20:04:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ScriptManager.MSAjax.dll">
+      <publishTime>09/06/2013 11:20:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ScriptManager.WebForms.dll">
+      <publishTime>09/06/2013 11:20:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>04/11/2022 16:09:46</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>03/08/2023 04:09:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>02/15/2022 02:38:32</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe.config">
+      <publishTime>02/15/2022 02:38:32</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.rsp">
+      <publishTime>02/15/2022 02:21:10</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.exe">
+      <publishTime>02/15/2022 02:38:42</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.exe.config">
+      <publishTime>02/15/2022 02:38:42</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.rsp">
+      <publishTime>02/15/2022 02:21:14</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>02/15/2022 02:33:12</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>02/15/2022 02:36:00</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll">
+      <publishTime>02/15/2022 02:38:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>02/15/2022 02:33:04</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll">
+      <publishTime>02/15/2022 02:33:26</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>02/15/2022 02:34:50</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>02/15/2022 02:21:10</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll">
+      <publishTime>10/04/2021 21:47:54</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll">
+      <publishTime>10/04/2021 21:49:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Managed.Core.CurrentVersions.targets">
+      <publishTime>02/15/2022 02:33:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Managed.Core.targets">
+      <publishTime>02/15/2022 02:21:10</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>02/15/2022 02:21:10</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Buffers.dll">
+      <publishTime>02/19/2020 07:05:18</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>10/19/2020 15:37:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Memory.dll">
+      <publishTime>02/19/2020 07:05:18</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Numerics.Vectors.dll">
+      <publishTime>05/15/2018 10:29:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>10/19/2020 15:45:32</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Runtime.CompilerServices.Unsafe.dll">
+      <publishTime>10/19/2020 15:46:30</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Text.Encoding.CodePages.dll">
+      <publishTime>11/29/2018 12:39:18</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Threading.Tasks.Extensions.dll">
+      <publishTime>02/19/2020 07:05:18</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>02/15/2022 02:34:58</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe.config">
+      <publishTime>02/15/2022 02:34:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.rsp">
+      <publishTime>02/15/2022 02:21:12</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>02/15/2022 02:38:42</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>02/15/2022 02:38:42</publishTime>
+    </File>
+    <File Include="bin/System.Buffers.dll">
+      <publishTime>02/19/2020 07:05:18</publishTime>
+    </File>
+    <File Include="bin/System.Memory.dll">
+      <publishTime>05/08/2022 00:31:02</publishTime>
+    </File>
+    <File Include="bin/System.Numerics.Vectors.dll">
+      <publishTime>05/15/2018 10:29:44</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.CompilerServices.Unsafe.dll">
+      <publishTime>10/22/2021 20:40:18</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>02/11/2014 15:26:04</publishTime>
+    </File>
+    <File Include="bin/VidonBotellas.dll">
+      <publishTime>10/26/2023 23:14:47</publishTime>
+    </File>
+    <File Include="bin/VidonBotellas.pdb">
+      <publishTime>10/26/2023 23:14:47</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>01/23/2014 13:57:34</publishTime>
+    </File>
+    <File Include="Botellas-Carga.aspx">
+      <publishTime>10/26/2023 22:05:48</publishTime>
+    </File>
+    <File Include="Botellas-Gestion.aspx">
+      <publishTime>10/26/2023 23:13:52</publishTime>
+    </File>
+    <File Include="Bundle.config">
+      <publishTime>10/04/2023 16:09:48</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.css">
+      <publishTime>10/04/2023 17:00:06</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.css.map">
+      <publishTime>10/04/2023 17:00:06</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.min.css">
+      <publishTime>10/04/2023 17:00:06</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.min.css.map">
+      <publishTime>10/04/2023 17:00:06</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.rtl.css">
+      <publishTime>10/04/2023 17:00:06</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.rtl.css.map">
+      <publishTime>10/04/2023 17:00:06</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.rtl.min.css">
+      <publishTime>10/04/2023 17:00:06</publishTime>
+    </File>
+    <File Include="Content/bootstrap-grid.rtl.min.css.map">
+      <publishTime>10/04/2023 17:00:05</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.css">
+      <publishTime>10/04/2023 17:00:05</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.css.map">
+      <publishTime>10/04/2023 17:00:05</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.min.css">
+      <publishTime>10/04/2023 17:00:05</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.min.css.map">
+      <publishTime>10/04/2023 17:00:05</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.rtl.css">
+      <publishTime>10/04/2023 17:00:05</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.rtl.css.map">
+      <publishTime>10/04/2023 17:00:05</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.rtl.min.css">
+      <publishTime>10/04/2023 17:00:05</publishTime>
+    </File>
+    <File Include="Content/bootstrap-reboot.rtl.min.css.map">
+      <publishTime>10/04/2023 17:00:05</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.css">
+      <publishTime>10/04/2023 17:00:05</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.css.map">
+      <publishTime>10/04/2023 17:00:05</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.min.css">
+      <publishTime>10/04/2023 17:00:04</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.min.css.map">
+      <publishTime>10/04/2023 17:00:04</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.rtl.css">
+      <publishTime>10/04/2023 17:00:04</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.rtl.css.map">
+      <publishTime>10/04/2023 17:00:04</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.rtl.min.css">
+      <publishTime>10/04/2023 17:00:04</publishTime>
+    </File>
+    <File Include="Content/bootstrap-utilities.rtl.min.css.map">
+      <publishTime>10/04/2023 17:00:04</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>10/04/2023 17:00:04</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css.map">
+      <publishTime>10/04/2023 17:00:04</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>10/04/2023 17:00:04</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css.map">
+      <publishTime>10/04/2023 17:00:04</publishTime>
+    </File>
+    <File Include="Content/bootstrap.rtl.css">
+      <publishTime>10/04/2023 17:00:04</publishTime>
+    </File>
+    <File Include="Content/bootstrap.rtl.css.map">
+      <publishTime>10/04/2023 17:00:03</publishTime>
+    </File>
+    <File Include="Content/bootstrap.rtl.min.css">
+      <publishTime>10/04/2023 17:00:03</publishTime>
+    </File>
+    <File Include="Content/bootstrap.rtl.min.css.map">
+      <publishTime>10/04/2023 17:00:03</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>10/04/2023 16:09:48</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>10/05/2023 17:49:34</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>10/04/2023 16:09:48</publishTime>
+    </File>
+    <File Include="Imagenes/Barest %28NUEVO COLOR%29.png">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/Check_icon.png">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/fondoNC.png">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/gcconqr.png">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/GIFTCARD FONDO.jpg">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/Neptune.png">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/Restringido_icon.png">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/Tarjeta Giftcard.jpg">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/Tarjeta VUT VVOUCHER.jpg">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/Tarjeta VUT.jpg">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/Tarjetas Voucher.jpg">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/TARJETAS-GIFTCARD.jpg">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/TARJETAS-VOUCHER.jpg">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/vchconqr.png">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/Vidon Altacba 27012021- Leandro Gomez %285 de 128%29.jpg">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/Vidon Altacba 27012021- Leandro Gomez %286 de 128%29.jpg">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/Vidon bar ORIGINAL.png">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/vutconqr.png">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Imagenes/X_icon.png">
+      <publishTime>10/04/2023 17:14:57</publishTime>
+    </File>
+    <File Include="Redirect.aspx">
+      <publishTime>10/26/2023 22:08:55</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.bundle.js">
+      <publishTime>10/04/2023 17:00:03</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.bundle.js.map">
+      <publishTime>10/04/2023 17:00:03</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.bundle.min.js">
+      <publishTime>10/04/2023 17:00:03</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.bundle.min.js.map">
+      <publishTime>10/04/2023 17:00:03</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.esm.js">
+      <publishTime>10/04/2023 17:00:03</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.esm.js.map">
+      <publishTime>10/04/2023 17:00:03</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.esm.min.js">
+      <publishTime>10/04/2023 17:00:03</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.esm.min.js.map">
+      <publishTime>10/04/2023 17:00:02</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>10/04/2023 17:00:02</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js.map">
+      <publishTime>10/04/2023 17:00:02</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>10/04/2023 17:00:02</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js.map">
+      <publishTime>10/04/2023 17:00:02</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.js">
+      <publishTime>10/04/2023 16:58:35</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.min.js">
+      <publishTime>10/04/2023 16:58:35</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.min.map">
+      <publishTime>10/04/2023 16:58:35</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.slim.js">
+      <publishTime>10/04/2023 16:58:35</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.slim.min.js">
+      <publishTime>10/04/2023 16:58:35</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.slim.min.map">
+      <publishTime>10/04/2023 16:58:35</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.8.3.js">
+      <publishTime>10/04/2023 16:09:57</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/DetailsView.js">
+      <publishTime>10/04/2023 16:10:01</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/Focus.js">
+      <publishTime>10/04/2023 16:10:01</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/GridView.js">
+      <publishTime>10/04/2023 16:10:01</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/Menu.js">
+      <publishTime>10/04/2023 16:10:01</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MenuStandards.js">
+      <publishTime>10/04/2023 16:10:01</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjax.js">
+      <publishTime>10/04/2023 16:10:01</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxApplicationServices.js">
+      <publishTime>10/04/2023 16:10:01</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxComponentModel.js">
+      <publishTime>10/04/2023 16:10:00</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxCore.js">
+      <publishTime>10/04/2023 16:10:00</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxGlobalization.js">
+      <publishTime>10/04/2023 16:10:00</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxHistory.js">
+      <publishTime>10/04/2023 16:10:00</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxNetwork.js">
+      <publishTime>10/04/2023 16:10:00</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxSerialization.js">
+      <publishTime>10/04/2023 16:10:00</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxTimer.js">
+      <publishTime>10/04/2023 16:10:00</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxWebForms.js">
+      <publishTime>10/04/2023 16:10:00</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/MSAjax/MicrosoftAjaxWebServices.js">
+      <publishTime>10/04/2023 16:10:00</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/SmartNav.js">
+      <publishTime>10/04/2023 16:10:01</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/TreeView.js">
+      <publishTime>10/04/2023 16:10:01</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/WebForms.js">
+      <publishTime>10/04/2023 16:10:01</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/WebParts.js">
+      <publishTime>10/04/2023 16:10:01</publishTime>
+    </File>
+    <File Include="Scripts/WebForms/WebUIValidation.js">
+      <publishTime>10/04/2023 16:10:01</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>10/26/2023 23:14:52</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

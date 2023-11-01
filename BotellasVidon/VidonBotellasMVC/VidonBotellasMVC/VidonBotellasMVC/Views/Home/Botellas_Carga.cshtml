@@ -1,0 +1,119 @@
+﻿@{
+    ViewData["Title"] = "Carga";
+}
+
+<form id="form1" runat="server">
+    <div class="text-center" style="padding-left: 50px; padding-right: 50px; margin-bottom: 60px;">
+
+        <br />
+        <h2 class="pb-2 border-bottom">Tu botella de Fernet!</h2>
+        <p class="lead">. Completa tus datos y consigue tu número fernetero.</p>
+
+
+        <div class="col-md">
+
+
+            <div class="contenedor">
+                <div class="row g-3">
+
+
+                    <!-- --------------------------------------------------------------------------------------------------------- -->
+
+                    <div class="col-12">
+                        <label for="" class="form-label">Documento</label>
+                        <div class="input-group has-validation">
+                            <input id="dni" name="dni" type="text" class="form-control" required>
+                        </div>
+                    </div>
+
+
+                    <!-- --------------------------------------------------------------------------------------------------------- -->
+
+                    <div id="otrosCampos" class="row g-3" style="display: none;">
+
+                        <div class="col-sm-6">
+                            <label for="Nombre" class="form-label">Nombre</label>
+                            <input id="Nombre" name="Nombre" type="text" class="form-control">
+                        </div>
+
+
+                        <!-- --------------------------------------------------------------------------------------------------------- -->
+
+                        <div class="col-sm-6">
+                            <label for="" class="form-label">Apellido</label>
+                            <input ID="dato" name="Apellido" runat="server" type="text" class="form-control">
+                        </div>
+
+                        <!-- --------------------------------------------------------------------------------------------------------- -->
+
+                        <div class="col-sm-6">
+                            <label for="" class="form-label">Número de teléfono</label>
+                            <div class="input-group has-validation">
+                                <input ID="date" runat="server" type="tel" name="NumeroTelefono" class="form-control">
+                            </div>
+                        </div>
+
+                        <!-- --------------------------------------------------------------------------------------------------------- -->
+
+                        <div class="col-sm-6">
+                            <label for="" class="form-label">Fecha de nacimiento</label>
+                            <div class="input-group has-validation">
+                                <input ID="date" runat="server" type="date" name="FechaNacimiento" class="form-control" placeholder="Username" TextMode="Date">
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- --------------------------------------------------------------------------------------------------------- -->
+
+                    <div class="col-12">
+                        <label for="" class="form-label">Mozo que lo atendió</label>
+                        <div class="input-group has-validation">
+                            <input ID="dato" runat="server" type="text" name="QuienGuardoMozo" class="form-control" required>
+                        </div>
+                    </div>
+
+
+                    <!-- --------------------------------------------------------------------------------------------------------- -->
+
+                    <div class="col-12">
+                        <br />
+                        <a ID="btnAceptar" class="w-100 btn btn-lg" Style="background-color: #0c8444; color: white;">Guardar</a>
+                    </div>
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title fs-5" id="staticBackdropLabel">
+                                        <asp:Label ID="lblNombre" runat="server" Text="Label"></asp:Label>
+                                    </h3>
+                                </div>
+                                <div class="modal-body">
+                                    <h1 style="font-size: 60px;">
+                                        A<asp:Label ID="lblNumero" runat="server" Text="Label"></asp:Label>
+                                    </h1>
+                                    <p>Recuerda darle este número al mozo que te atendio</p>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <a href="https://www.instagram.com/vidonbar/" class="btn btn-danger" id="cerrarBtn">Cerrar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+

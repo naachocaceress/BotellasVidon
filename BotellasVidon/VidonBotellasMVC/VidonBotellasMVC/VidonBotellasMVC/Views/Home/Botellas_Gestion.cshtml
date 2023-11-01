@@ -1,0 +1,166 @@
+﻿@model IEnumerable<VidonBotellasMVC.Models.Botella>
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+<div class="text-center" style="padding-left: 20px; padding-right: 20px;">
+
+    <br />
+    <h2 class="pb-2 border-bottom">Gestión de botellas guardadas</h2>
+
+    <div class="col-md">
+
+        <div class="contenedor">
+            <div class="row g-3">
+
+
+                @* <div class="d-sm-flex justify-content-between flex-wrap">
+                    <div class="component-container">
+                        <label class="component-label">Buscar por id botella</label>
+                        <div class="input-group">
+                            <input ID="txtId" runat="server" class="form-control" Style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Ingresar id" TextMode="Number"></input>
+                            &nbsp;&nbsp;
+                            <div class="input-group-append">
+                                <a ID="btnId" class="btn btn-primary" runat="server">Buscar</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="component-container">
+                        <label class="component-label">Buscar por documento</label>
+                        <div class="input-group">
+                            <input ID="txtDni" runat="server" class="form-control" Style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Ingresar documento" TextMode="Number"></input>
+                            &nbsp;&nbsp;
+                            <div class="input-group-append">
+                                <a ID="btnDni" class="btn btn-primary" runat="server">Buscar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="d-sm-flex justify-content-between flex-wrap">
+                    <div class="d-flex flex-column flex-md-row align-items-md-center">
+                        <a ID="btnExportExcelBotellas" runat="server" class="btn btn-outline-success">Exportar a Excel</a>
+                    </div>
+                    &nbsp;
+                    <div class="d-flex align-items-center">
+                        <span style="white-space: nowrap; margin-right: 5px;">Cantidad de resultados:</span>
+
+                        <select ID="ddlPageSizeBotellas" runat="server" class="form-select ml-2" Style="max-width: 80px;" AutoPostBack="true" OnSelectedIndexChanged="ddlPageSizeBotellas_SelectedIndexChanged">
+                            <option value="50">50</option>
+                            <option Value="100">100</option>
+                            <option Value="200">200</option>
+                            <option Value="300">300</option>
+                            <option Value="400">400</option>
+                            <option Value="500">500</option>
+                        </select>
+                    </div>
+
+                </div> *@
+
+
+                    <table class="table table-striped" style="width:100%" id="tblUsuarios" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Id Botella</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Documento</th>
+                                <th>Fecha Guardado</th>
+                                <th>Guardado por</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                    <tbody>
+                        
+                    </tbody>
+                    </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+        <script>
+            $(document).ready(function () {
+                var sucursal = getUrlParameter("sucursal"); // Obtener el valor de 'sucursal' de la URL
+                var tablaUsuarios = $('#tblUsuarios').DataTable({
+                    // Configuración de DataTables
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
+                    "infoFiltered": "(filtrado de _MAX_ entradas en total)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+                });
+
+                $.ajax({
+                    url: "/Home/GetBotellasData?sucursal=" + sucursal, // Incluir 'sucursal' en la URL
+                    type: "GET",
+                    success: function (data) {
+                        tablaUsuarios.clear().draw(); // Limpiar la tabla
+
+                        $.each(data, function (index, botella) {
+                            var fechaGuardado = new Date(botella.fechaGuar);
+                            var fechaFormateada = fechaGuardado.getDate() + '-' + (fechaGuardado.getMonth() + 1) + '-' + fechaGuardado.getFullYear();
+
+                            var estadoText = "";
+                            var estadoClass = "";
+
+                            if (botella.estado === "A") {
+                                estadoText = "Activo";
+                                estadoClass = "btn-success";
+                            } else if (botella.estado === "B") {
+                                estadoText = "Inactivo";
+                                estadoClass = "btn-danger";
+                            }
+
+                            var row = [
+                                botella.idBotella,
+                                botella.nombre,
+                                botella.apellido,
+                                botella.dni,
+                                fechaFormateada,
+                                botella.mozo,
+                                '<a class="btn ' + estadoClass + '" style="width: 80px;">' + estadoText + '</a>'
+                            ];
+
+                            tablaUsuarios.row.add(row).draw();
+                        });
+                    tablaUsuarios.order([0, 'desc']).draw();
+
+                    },
+                    error: function () {
+                        alert("Error al cargar los datos de las botellas.");
+                    }
+                });
+            });
+
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+            var results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    </script>
+}
