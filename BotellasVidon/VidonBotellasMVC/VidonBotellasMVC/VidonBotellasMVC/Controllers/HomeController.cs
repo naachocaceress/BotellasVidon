@@ -39,8 +39,8 @@ namespace VidonBotellasMVC.Controllers
 
 
 
-
-        public IActionResult Botellas_Gestion()
+        [HttpGet]
+        public async Task<IActionResult> Botellas_Gestion()
         {
             string sucursal = HttpContext.Request.Query["sucursal"];
             var sucursalModel = _dbContext.Sucursales.FirstOrDefault(s => s.IdSucursal == int.Parse(sucursal));
@@ -54,15 +54,22 @@ namespace VidonBotellasMVC.Controllers
                 ViewData["Sucursal"] = "Sucursal no encontrada";
             }
 
-            return View();
+
+
+
+
+            return View(await _dbContext.Botellas.ToListAsync());
         }
+
+
+
+
 
         public class BotellaClienteViewModel
         {
             public IEnumerable<VidonBotellasMVC.Models.Botella> Botellas { get; set; }
             public IEnumerable<VidonBotellasMVC.Models.Cliente> Clientes { get; set; }
         }
-
 
         public IActionResult GetBotellasData(int sucursal)
         {
