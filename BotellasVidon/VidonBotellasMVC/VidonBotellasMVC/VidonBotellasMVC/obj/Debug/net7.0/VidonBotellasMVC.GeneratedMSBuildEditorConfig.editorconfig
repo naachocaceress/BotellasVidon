@@ -16,12 +16,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Proyectos\Vidon Bar\Botellas Vidon\BotellasVidon\VidonBotellasMVC\VidonBotellasMVC\VidonBotellasMVC
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Proyectos/Vidon Bar/Botellas Vidon/BotellasVidon/VidonBotellasMVC/VidonBotellasMVC/VidonBotellasMVC/Views/Home/Botellas_Carga.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCb3RlbGxhc19DYXJnYS5jc2h0bWw=
+[C:/Proyectos/Vidon Bar/Botellas Vidon/BotellasVidon/VidonBotellasMVC/VidonBotellasMVC/VidonBotellasMVC/Views/Botellas/Carga.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm90ZWxsYXNcQ2FyZ2EuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Proyectos/Vidon Bar/Botellas Vidon/BotellasVidon/VidonBotellasMVC/VidonBotellasMVC/VidonBotellasMVC/Views/Home/Botellas_Gestion.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCb3RlbGxhc19HZXN0aW9uLmNzaHRtbA==
+[C:/Proyectos/Vidon Bar/Botellas Vidon/BotellasVidon/VidonBotellasMVC/VidonBotellasMVC/VidonBotellasMVC/Views/Botellas/Gestion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm90ZWxsYXNcR2VzdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Proyectos/Vidon Bar/Botellas Vidon/BotellasVidon/VidonBotellasMVC/VidonBotellasMVC/VidonBotellasMVC/Views/Shared/Error.cshtml]

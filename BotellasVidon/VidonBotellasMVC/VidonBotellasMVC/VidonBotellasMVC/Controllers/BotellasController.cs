@@ -6,18 +6,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace VidonBotellasMVC.Controllers
 {
-    public class HomeController : Controller
+    public class BotellasController : Controller
     {
         private readonly string cadenaSQL;
         private readonly Vvoucher2Context _dbContext;
 
-        public HomeController(IConfiguration config, Vvoucher2Context dbContext)
+        public BotellasController(IConfiguration config, Vvoucher2Context dbContext)
         {
             cadenaSQL = config.GetConnectionString("conexion");
             _dbContext = dbContext;
         }
 
-        public IActionResult Botellas_Carga()
+        public IActionResult Carga()
         {
             string sucursal = HttpContext.Request.Query["sucursal"];
 
@@ -37,61 +37,49 @@ namespace VidonBotellasMVC.Controllers
 
 
 
-
-
-        [HttpGet]
-        public async Task<IActionResult> Botellas_Gestion()
+        public class BotellaClienteViewModel
         {
-            string sucursal = HttpContext.Request.Query["sucursal"];
-            var sucursalModel = _dbContext.Sucursales.FirstOrDefault(s => s.IdSucursal == int.Parse(sucursal));
+            public IEnumerable<Botella> Botellas { get; set; }
+            public IEnumerable<Cliente> Clientes { get; set; }
+        }
+
+        public async Task<IActionResult> Gestion()
+        {
+            string sucursalParam = HttpContext.Request.Query["sucursal"];
+            if (!int.TryParse(sucursalParam, out int sucursalId))
+            {
+                ViewData["Sucursal"] = "Sucursal no válida";
+                return View(await _dbContext.Botellas.ToListAsync());
+            }
+
+            var sucursalModel = _dbContext.Sucursales.FirstOrDefault(s => s.IdSucursal == sucursalId);
 
             if (sucursalModel != null)
             {
                 ViewData["Sucursal"] = sucursalModel.Nombre;
+
+                var botellas = (from b in _dbContext.Botellas
+                                join c in _dbContext.Clientes on b.IdCliente equals c.IdCliente
+                                where b.IdSucursal == sucursalId
+                                select b).ToList();
+
+                var clientes = _dbContext.Clientes.ToList();
+
+                var viewModel = new BotellaClienteViewModel
+                {
+                    Botellas = botellas,
+                    Clientes = clientes
+                };
+
+                return View(viewModel);
             }
             else
             {
                 ViewData["Sucursal"] = "Sucursal no encontrada";
+                return View(await _dbContext.Botellas.ToListAsync());
             }
-
-
-
-
-
-            return View(await _dbContext.Botellas.ToListAsync());
         }
 
-
-
-
-
-        public class BotellaClienteViewModel
-        {
-            public IEnumerable<VidonBotellasMVC.Models.Botella> Botellas { get; set; }
-            public IEnumerable<VidonBotellasMVC.Models.Cliente> Clientes { get; set; }
-        }
-
-        public IActionResult GetBotellasData(int sucursal)
-        {
-            var query = from b in _dbContext.Botellas
-                        join c in _dbContext.Clientes on b.IdCliente equals c.IdCliente
-                        where b.IdSucursal == sucursal
-                        orderby b.IdBotella descending
-                        select new
-                        {
-                            idBotella = b.NumeroBotella,
-                            nombre = c.Nombre,
-                            apellido = c.Apellido,
-                            dni = c.Dni,
-                            fechaGuar = b.FechaGuardado,
-                            mozo = b.QuienGuardoMozo,
-                            estado = b.Estado
-                        };
-
-            var botellas = query.ToList();
-
-            return Json(botellas);
-        }
 
         [HttpPost]
         public IActionResult CambiarEstadoBotella(int idBotella)
