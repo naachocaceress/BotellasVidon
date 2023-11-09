@@ -1,0 +1,184 @@
+﻿@model VidonBotellasMVC.Controllers.BotellasController.BotellaClienteViewModelCarga
+@{
+    ViewData["Title"] = "Carga";
+}
+
+<div class="row p-3 text-center" style="padding-left: 50px; padding-right: 50px; margin-bottom: 60px;">
+
+    <br />
+    <h2 class="pb-2 border-bottom">Tu botella de Fernet!</h2>
+    <p class="lead">. Completa tus datos y consigue tu número fernetero.</p>
+
+
+    <form id="myForm" asp-action="Crear" method="POST" asp-route-sucursal="@ViewData["SucursalId"]">
+
+            <!-- --------------------------------------------------------------------------------------------------------- -->
+
+            <div class="col-12">
+                <label for="" class="form-label">Documento</label>
+                <div class="input-group has-validation">
+                    <input asp-for="Cliente.Dni" type="text" class="form-control" value="@TempData["Dni"]" required>
+                </div>
+            </div>           
+
+            <!-- --------------------------------------------------------------------------------------------------------- -->
+
+            <div id="otrosCampos" class="col-12 g-3" style="display: none;">
+
+                <input type="hidden" id="miCampoOculto" name="miCampoOculto" value="0" />
+
+            <br />
+
+                <div class="col-sm-6">
+                    <label for="Nombre" class="form-label">Nombre</label>
+                    <input asp-for="Cliente.Nombre" type="text" class="form-control">
+                </div>
+
+                <!-- --------------------------------------------------------------------------------------------------------- -->
+
+                <div class="col-sm-6">
+                    <label for="" class="form-label">Apellido</label>
+                    <input asp-for="Cliente.Apellido" runat="server" type="text" class="form-control">
+                </div>
+
+
+                <!-- --------------------------------------------------------------------------------------------------------- -->
+
+
+                <div class="col-sm-6">
+                    <label for="" class="form-label">Número de teléfono</label>
+                    <div class="input-group has-validation">
+                        <input asp-for="Cliente.NumeroTelefono" runat="server" type="tel" class="form-control">
+                    </div>
+                </div>
+
+                <!-- --------------------------------------------------------------------------------------------------------- -->
+
+                <div class="col-sm-6">
+                    <label for="" class="form-label">Fecha de nacimiento</label>
+                    <div class="input-group has-validation">
+                        <input asp-for="Cliente.FechaNacimiento" runat="server" type="date" class="form-control" placeholder="Username" TextMode="Date">
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- --------------------------------------------------------------------------------------------------------- -->
+            <br />
+
+            <div class="col-12">
+                <label for="" class="form-label">Mozo que lo atendió</label>
+                <div class="input-group has-validation">
+                    <input asp-for="Botella.QuienGuardoMozo" runat="server" type="text" class="form-control" value="@TempData["QuienGuardoMozo"]" required>
+                </div>
+            </div>
+
+            <!-- --------------------------------------------------------------------------------------------------------- -->
+
+            <div class="col-12">
+
+                <br />
+
+            <button id="myButton" type="submit" class="w-100 btn btn-lg" style="background-color: #0c8444; color: white;">
+                <span class="button-text">Guardar</span>
+                <span class="spinner-border" aria-hidden="true" style="display: none;"></span>
+            </button>
+
+            </div>
+
+        </form>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title fs-5" id="staticBackdropLabel">
+                        <label>Hola @TempData["nombre"]!</label>
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <h1 style="font-size: 60px;">
+                        A<label>@TempData["numeroBotella"]</label>
+                    </h1>
+                    <p>Recuerda darle este número al mozo que te atendio</p>
+                </div>
+
+                <div class="modal-footer">
+                    <a href="https://www.instagram.com/vidonbar/" class="btn btn-danger" id="cerrarBtn">Cerrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+
+        $(document).ready(function () {
+            var message = '@TempData["Message"]';
+            if (message === 'ClienteNoExiste') {
+                $('#otrosCampos').css('display', 'block');
+                $('#miCampoOculto').val("1");
+            }
+        });
+
+
+        $(document).ready(function () {
+            var showModal = '@TempData["ShowModal"]';
+            if (showModal === 'True') {
+                $('#staticBackdrop').modal('show');
+            }
+        });
+
+
+        $(document).ready(function () {
+            $('#myForm').on('submit', function (e) {
+                $('.button-text').hide(); // Oculta el texto "Guardar"
+                $('.spinner-border').show(); // Muestra el spinner
+            });
+        });
+
+
+        // Registra la hora de inicio de la visita en una cookie o almacenamiento local
+        localStorage.setItem('inicioVisita', new Date().getTime());
+
+        // Establece un temporizador para verificar el tiempo transcurrido
+        var tiempoTranscurrido = 0; // Declarar la variable fuera de la función
+        var tiempoLimite = 900000; // 10 minuto en milisegundos
+
+        var verificarTiempo = function () {
+            var inicioVisita = localStorage.getItem('inicioVisita');
+            tiempoTranscurrido = new Date().getTime() - inicioVisita;
+
+            if (tiempoTranscurrido >= tiempoLimite) {
+                // Redirige a Instagram
+                window.location.href = 'https://www.instagram.com/vidonbar/';
+            }
+        };
+
+        setInterval(verificarTiempo, 1000); // Verifica cada segundo
+
+        // En la redirección a Instagram, agrega un nuevo estado a la historia
+        window.history.pushState({}, document.title, 'Redirect');
+
+        // Para prevenir la navegación hacia atrás
+        window.onpopstate = function (event) {
+            if (window.location.href.indexOf('Redirect') === -1) {
+                // Si intenta volver atrás, redirige nuevamente a Instagram
+                window.location.href = 'https://www.instagram.com/vidonbar/';
+            }
+        };
+
+        // Imprime el tiempo transcurrido en la consola
+        setInterval(function () {
+            console.log(tiempoTranscurrido / 1000);
+        }, 1000);
+    </script>
+
+
+    }
+
