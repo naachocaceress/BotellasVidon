@@ -17,24 +17,85 @@ namespace VidonBotellasMVC.Controllers
             _dbContext = dbContext;
         }
 
+
+        public class BotellaClienteViewModelCarga
+        {
+            public Botella Botella { get; set; }
+            public Cliente Cliente { get; set; }
+        }
+
+
         public IActionResult Carga()
         {
             string sucursal = HttpContext.Request.Query["sucursal"];
+            int idSucursal = int.Parse(sucursal);
 
-            var sucursalModel = _dbContext.Sucursales.FirstOrDefault(s => s.IdSucursal == int.Parse(sucursal));
+            var sucursalModel = _dbContext.Sucursales.FirstOrDefault(s => s.IdSucursal == idSucursal);
+
 
             if (sucursalModel != null)
             {
+                ViewData["SucursalId"] = sucursalModel.IdSucursal;
                 ViewData["Sucursal"] = sucursalModel.Nombre;
             }
             else
             {
-                ViewData["Sucursal"] = "Sucursal no encontrada"; // O una acción a tomar en caso de no encontrar la sucursal
+                ViewData["Sucursal"] = "Sucursal no encontrada";
             }
 
             return View();
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> Crear(BotellaClienteViewModelCarga viewModel, string sucursal, string miCampoOculto)
+        {
+            Cliente cliente;
+            if (miCampoOculto == "0")
+            {
+                cliente = _dbContext.Clientes.FirstOrDefault(c => c.Dni == viewModel.Cliente.Dni);
+                if (cliente == null)
+                {
+                    TempData["Message"] = "ClienteNoExiste";
+                    TempData["Dni"] = viewModel.Cliente.Dni;
+                    TempData["QuienGuardoMozo"] = viewModel.Botella.QuienGuardoMozo;
+                    return RedirectToAction(nameof(Carga), new { sucursal = sucursal });
+                }
+            }
+            else
+            {
+                _dbContext.Clientes.Add(viewModel.Cliente);
+                await _dbContext.SaveChangesAsync();
+                cliente = viewModel.Cliente;
+            }
+
+            viewModel.Botella.IdCliente = cliente.IdCliente;
+
+            int idSucursal = int.Parse(sucursal);
+
+            int numeroBotella = await _dbContext.Botellas
+            .Where(b => b.IdSucursal == idSucursal)
+            .Select(b => (int?)b.NumeroBotella) 
+            .MaxAsync() + 1 ?? 1;
+
+            viewModel.Botella.NumeroBotella = numeroBotella;
+            viewModel.Botella.FechaGuardado = DateTime.Today;
+            viewModel.Botella.IdSucursal = int.Parse(sucursal);
+            viewModel.Botella.Estado = "A";
+
+            _dbContext.Botellas.Add(viewModel.Botella);
+
+            await _dbContext.SaveChangesAsync();
+
+            TempData["ShowModal"] = "True";
+            TempData["numeroBotella"] = numeroBotella;
+            TempData["nombre"] = cliente.Nombre;
+
+            return RedirectToAction(nameof(Carga), new { sucursal = sucursal });
+        }
+
+
+        //--
 
 
         public class BotellaClienteViewModel
@@ -84,12 +145,10 @@ namespace VidonBotellasMVC.Controllers
         [HttpPost]
         public IActionResult CambiarEstadoBotella(int idBotella)
         {
-            // Busca la botella por su ID
             var botella = _dbContext.Botellas.FirstOrDefault(b => b.IdBotella == idBotella);
 
             if (botella != null)
             {
-                // Cambia el estado de la botella
                 if (botella.Estado == "A")
                 {
                     botella.Estado = "B";
@@ -99,12 +158,15 @@ namespace VidonBotellasMVC.Controllers
                     botella.Estado = "A";
                 }
 
-                // Guarda los cambios en la base de datos
                 _dbContext.SaveChanges();
             }
 
-            // Devuelve una respuesta vacía
             return new EmptyResult();
+        }
+
+        public IActionResult Redirect()
+        {
+            return View();
         }
 
     }

@@ -48,12 +48,9 @@
                                         <td>@Html.DisplayFor(m => botella.QuienGuardoMozo)</td>
                                         <td>
                                             <a class="btn @(botella.Estado == "A" ? "btn-success" : "btn-danger")"
-                                               style="width: 80px;" data-botella-id="@botella.IdBotella">
+                                               style="width: 80px;" data-botella-id="@botella.IdBotella" data-numero-botella="@botella.NumeroBotella">
                                                 @(botella.Estado == "A" ? "Activo" : "Inactivo")
                                             </a>
-
-
-
                                         </td>
                                     </tr>
                                 }
@@ -67,6 +64,24 @@
                     }
 
                 </div>
+
+                <div class="modal" tabindex="-1" role="dialog" id="confirmModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Botella N° <label></label></h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>¿Estás seguro de que quieres cambiar el estado a Inactivo?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="confirm">Aceptar</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
         </div>
@@ -149,8 +164,27 @@
                 e.preventDefault(); // Previene el comportamiento predeterminado del enlace
 
                 var idBotella = $(this).data("botella-id");
+                var numeroBotella = $(this).data("numero-botella"); // Obtiene el número de la botella
                 var boton = $(this); // Almacena una referencia al elemento del botón
 
+                var estado = boton.hasClass("btn-success") ? "Activo" : "Inactivo";
+
+                if (estado == "Inactivo") {
+                    $('#confirmModal .modal-title label').text(numeroBotella); // Muestra el número de la botella en el modal
+                    $('#confirmModal').modal('show');
+
+                    // Desvincula el controlador de eventos anterior antes de agregar uno nuevo
+                    $('#confirmModal #confirm').off('click').on('click', function () {
+                        cambiarEstado(idBotella, boton);
+                        $('#confirmModal').modal('hide');
+                    });
+                } else {
+                    cambiarEstado(idBotella, boton);
+                }
+            });
+
+
+            function cambiarEstado(idBotella, boton) {
                 $.ajax({
                     url: "/Botellas/CambiarEstadoBotella",
                     type: "POST",
@@ -166,7 +200,7 @@
                         alert("Error al cambiar el estado de la botella.");
                     }
                 });
-            });
-            
+            }
+           
         </script>
     }
