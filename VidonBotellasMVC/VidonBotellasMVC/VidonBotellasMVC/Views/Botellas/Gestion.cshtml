@@ -7,79 +7,87 @@
 <h2 class="pb-2 border-bottom text-center">Gestión de botellas guardadas</h2>
 
 
-    <div class="row g-4">
+<div class="row g-4">
 
-        <div class="table-responsive">
+    <div class="table-responsive">
 
-            @if (Model.Botellas.Count() > 0)
-            {
-                <label id="busquedaCol1a" style="padding-right: 10px;">
-                    Buscar por id botella
-                    <input type="text" id="busquedaCol1" class="form-control form-control-sm">
-                </label>
+        @if (Model.Botellas.Count() > 0)
+        {
+            <label id="busquedaCol1a" style="padding-right: 10px;">
+                Buscar por id botella
+                <input type="text" id="busquedaCol1" class="form-control form-control-sm">
+            </label>
 
-                <table class="table table-striped text-center" style="width:100%; overflow-x:auto;" id="tblUsuarios" cellspacing="0">
-                    <thead>
+            <table class="table table-striped text-center" style="width:100%; overflow-x:auto;" id="tblUsuarios" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID Botella</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Documento</th>
+                        <th>Fecha Guardado</th>
+                        <th>Guardado por</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var botella in Model.Botellas)
+                    {
+                        var cliente = Model.Clientes.FirstOrDefault(c => c.IdCliente == botella.IdCliente);
+
                         <tr>
-                            <th>ID Botella</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Documento</th>
-                            <th>Fecha Guardado</th>
-                            <th>Guardado por</th>
-                            <th>Estado</th>
+                            <td>@Html.DisplayFor(m => botella.NumeroBotella)</td>
+                            <td>@Html.DisplayFor(m => cliente.Nombre)</td>
+                            <td>@Html.DisplayFor(m => cliente.Apellido)</td>
+                            <td>@Html.DisplayFor(m => cliente.Dni)</td>
+                            <td>@botella.FechaGuardado.ToString("dd/MM/yyyy")</td>
+                            <td>@Html.DisplayFor(m => botella.QuienGuardoMozo)</td>
+                            <td>
+                                <a class="btn @(botella.Estado == "A" ? "btn-success" : "btn-danger")"
+                                   style="width: 80px;" data-botella-id="@botella.IdBotella" data-numero-botella="@botella.NumeroBotella">
+                                    @(botella.Estado == "A" ? "Activo" : "Inactivo")
+                                </a>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var botella in Model.Botellas)
-                        {
-                            var cliente = Model.Clientes.FirstOrDefault(c => c.IdCliente == botella.IdCliente);
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <br />
+            <h4 class="text-center">Sin resultados aún</h4>
+        }
 
-                            <tr>
-                                <td>@Html.DisplayFor(m => botella.NumeroBotella)</td>
-                                <td>@Html.DisplayFor(m => cliente.Nombre)</td>
-                                <td>@Html.DisplayFor(m => cliente.Apellido)</td>
-                                <td>@Html.DisplayFor(m => cliente.Dni)</td>
-                                <td>@botella.FechaGuardado.ToString("dd/MM/yyyy")</td>
-                                <td>@Html.DisplayFor(m => botella.QuienGuardoMozo)</td>
-                                <td>
-                                    <a class="btn @(botella.Estado == "A" ? "btn-success" : "btn-danger")"
-                                       style="width: 80px;" data-botella-id="@botella.IdBotella" data-numero-botella="@botella.NumeroBotella">
-                                        @(botella.Estado == "A" ? "Activo" : "Inactivo")
-                                    </a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            }
-            else
-            {
-                <br />
-                <h4 class="text-center">Sin resultados aún</h4>
-            }
+    </div>
 
-        </div>
 
-        <div class="modal" tabindex="-1" role="dialog" id="confirmModal">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Botella N° <label></label></h5>
-                    </div>
-                    <div class="modal-body">
-                        <p>¿Estás seguro de que quieres cambiar el estado a Inactivo?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="confirm">Aceptar</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    </div>
+    <a href="https://selective-serpent-a12.notion.site/f55b66cd079b4e6a90d05380246f62a2?v=3aa7c091b5ea483398c0593c53e6d29d" class="float" target="_blank" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Manual de uso de VBotellas">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-info my-float" viewBox="0 0 16 16">
+            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+        </svg>
+    </a>
+
+
+    <div class="modal" tabindex="-1" role="dialog" id="confirmModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Botella N° <label></label></h5>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de que quieres cambiar el estado a Inactivo?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="confirm">Aceptar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
-
-
     </div>
+
+
+</div>
 
 <style>
     .dataTables_wrapper .dataTables_length label {
@@ -109,6 +117,37 @@
 
     #tblUsuarios {
         border: 1px solid #f2f2f2; /* Borde negro de 2 píxeles */
+    }
+
+
+    .float {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 20px;
+        
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 100;
+        color: #ADADAD;
+        background-color: #fff;
+        box-shadow: 0 0 2px 2px #C8C8C8;
+    }
+
+        .float:hover {
+            background-color: #0c8444;
+            color: #FFF;
+            box-shadow: 2px 2px 3px #999;
+        }
+
+    .my-float {
+        position: fixed;
+        margin-top: 16px;
+        bottom: 20px;
+        right: 20px;
     }
 
 </style>
@@ -195,6 +234,12 @@
                 }
             });
         }
+
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
 
     </script>
     }
